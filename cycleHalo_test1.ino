@@ -34,14 +34,14 @@ void setup() {
 void loop() {
   // For a set of Neoring the first NeoPixel is 0, second is 1, all the way up to the count of ring minus one.
   int num_pix = 16;
-  int width = 8;
+  int width = 4;
 
   uint32_t prim_color = ring.Color(20, 250, 20);
   uint32_t sec_color = ring.Color(30, 50, 50);
 
   for(float progress = 1.0 ;progress >= 0.0; progress -= 0.01)
   {
-    two_colour_fade(width, prim_color, sec_color, 0, progress);
+    two_colour_fade(width, prim_color, sec_color, 2, progress);
     ring.show();
     delay(50);
   }
@@ -52,11 +52,11 @@ void loop() {
   ring.show();
   delay(1000);
 
-  width  = 8;
+  width  = 4;
   
   for(float progress = 1.0 ;progress >= 0.0; progress -= 0.01)
   {
-    two_colour_fade(width, prim_color, sec_color, 10, progress);
+    two_colour_fade(width, prim_color, sec_color, 12, progress);
     ring.show();
     delay(50);
   }
