@@ -1,24 +1,33 @@
-// NeoPixel Ring simple sketch (c) 2013 Shae Erisson
-// released under the GPLv3 license to match the rest of the AdaFruit NeoPixel library
 #include <Adafruit_NeoPixel.h>
 
-// Which pin on the Arduino is connected to the Neoring?
-#define PIN            6
-
-// How many Neoring are attached to the Arduino?
+// NeoPixel output
+#define PIN         6
 #define NUMPIX      16
 
-// When we setup the NeoPixel library, we tell it how many ring, and which pin to use to send signals.
-// Note that for older NeoPixel strips you might need to change the third parameter--see the strandtest
-// example for more information on possible values.
+// Ring Commands
+#define SET_LED           0x01  // sets specific LED to a colour
+#define SET_SEGMENT       0x02  // sets segment from origin to end to a colour
+#define SET_BRIGHTNESS    0x03  // sets brightness of a segment
+#define SET_FADE_SEGMENT  0x04  // fades segment to desired colour
+#define BEAT_EFFECT       0x05  // dims and brightens an a segment n times
+#define COLOR_WHIP        0x06  // gradually sets colour of segment waiting delay between lighting each lighting
+
+// Front-light Commands
+#define SET_FLIGHT_ON 0x10
+#define SET_FLIGHT_OFF 0x12
+#define SET_FLIGHT_BLINK 0x13    //sets the light to blink with ontime and offtime
+
+// Switch
+#define ENABLE_SWITCH
+
+
 Adafruit_NeoPixel ring = Adafruit_NeoPixel(NUMPIX, PIN, NEO_GRB + NEO_KHZ800);
 
 int delayval = 2; // delay for half a second
 
 void setup() {
   ring.begin(); // This initializes the NeoPixel library.
-  
-    // Reset lights
+  // Reset lights
   ring.clear();
   ring.show();
   delay(500);
